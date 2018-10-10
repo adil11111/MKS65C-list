@@ -10,7 +10,7 @@ void print_list(struct node * startP){
     printf("%d\n",(*curP).num);
     curP = (*curP).next;
   }
-  printf("%d\n",(*curP).num);
+    printf("%d\n",(*curP).num);
 }
 
 struct node * insert_front(struct node * oldStart, int value){
@@ -20,14 +20,17 @@ struct node * insert_front(struct node * oldStart, int value){
   return newStart;
 }
 
-/*struct node * free_list(struct node * start){
+struct node * free_list(struct node * start){
   struct node *curP = start;
+  struct node *tempP = start;
   while(curP -> next){
-    free(curP);
+    free(tempP);
+    curP = curP->next;
+    tempP = curP;
   }
-  free(curP);
+  free(tempP);
   return start;
-  }*/
+}
 
 
 
@@ -45,6 +48,8 @@ int main(){
   //printf("%d\n",(secondP->num));
   //struct node * newStart=insert_front(firstP,21);
   //print_list(newStart);
+  print_list(firstP);
   free_list(firstP);
+  print_list(firstP);
   return 0;
 }
