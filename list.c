@@ -13,6 +13,25 @@ void print_list(struct node * startP){
   printf("%d\n",(*curP).num);
 }
 
+struct node * insert_front(struct node * oldStart, int value){
+  struct node * newStart=malloc(sizeof(struct node));
+  newStart -> num = value;
+  newStart -> next = oldStart;
+  return newStart;
+}
+
+/*struct node * free_list(struct node * start){
+  struct node *curP = start;
+  while(curP -> next){
+    free(curP);
+  }
+  free(curP);
+  return start;
+  }*/
+
+
+
+
 int main(){
   struct node *firstP = malloc(sizeof(struct node));
   firstP -> num = 78;
@@ -24,6 +43,8 @@ int main(){
   secondP -> next = NULL;
   //printf("%d\n",(firstP->next->num));
   //printf("%d\n",(secondP->num));
-  print_list(firstP);
+  //struct node * newStart=insert_front(firstP,21);
+  //print_list(newStart);
+  free_list(firstP);
   return 0;
 }
