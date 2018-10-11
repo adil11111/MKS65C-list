@@ -35,14 +35,4 @@ struct node * free_list(struct node * start){
   return curP;
 }
 
-int main(){
-  struct node *start= NULL;
-  //print_list(start);
-  start=insert_front(start,21);
-  //struct node *second = insert_front(start,99);
-  //print_list(second);
-  //print_list(start);
-  start=free_list(start);
-  print_list(start);
-  return 0;
-}
+
