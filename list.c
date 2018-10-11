@@ -6,11 +6,15 @@
 
 void print_list(struct node * startP){
   struct node * curP = startP;
-  while(curP -> next){
-    printf("%d\n",(*curP).num);
+  printf("[");
+  if (curP==NULL){
+    printf("%d",0);
+  }
+  while(curP != NULL){
+    printf("%d,",(*curP).num);
     curP = (*curP).next;
   }
-    printf("%d\n",(*curP).num);
+  printf("]\n");
 }
 
 struct node * insert_front(struct node * oldStart, int value){
@@ -23,33 +27,22 @@ struct node * insert_front(struct node * oldStart, int value){
 struct node * free_list(struct node * start){
   struct node *curP = start;
   struct node *tempP = start;
-  while(curP -> next){
-    free(tempP);
+  while(curP){
     curP = curP->next;
+    free(tempP);
     tempP = curP;
   }
-  free(tempP);
-  return start;
+  return curP;
 }
 
-
-
-
 int main(){
-  struct node *firstP = malloc(sizeof(struct node));
-  firstP -> num = 78;
-  //printf("%d\n",(firstP -> num));
-  
-  struct node *secondP = malloc(sizeof(struct node));
-  secondP -> num = 2;
-  firstP ->next= secondP;
-  secondP -> next = NULL;
-  //printf("%d\n",(firstP->next->num));
-  //printf("%d\n",(secondP->num));
-  //struct node * newStart=insert_front(firstP,21);
-  //print_list(newStart);
-  print_list(firstP);
-  free_list(firstP);
-  print_list(firstP);
+  struct node *start= NULL;
+  //print_list(start);
+  start=insert_front(start,21);
+  //struct node *second = insert_front(start,99);
+  //print_list(second);
+  //print_list(start);
+  start=free_list(start);
+  print_list(start);
   return 0;
 }
